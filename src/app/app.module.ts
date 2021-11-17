@@ -9,6 +9,10 @@ import { CursosComponent } from './cursos/cursos.component';
 import { HomeComponent } from './home/home.component';
 
 import { routing } from './app.routing';
+import { ScheduleComponent } from './schedule/schedule.component';
+import { UserComponent } from './user/user.component';
+import { LaundryComponent } from './laundry/laundry.component';
+import { MachineComponent } from './machine/machine.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +20,10 @@ import { routing } from './app.routing';
     Component1Component,
     CursosComponent,
     HomeComponent,
+    ScheduleComponent,
+    UserComponent,
+    LaundryComponent,
+    MachineComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, NgbModule, routing],
   providers: [],
