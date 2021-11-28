@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MachineComponent } from './machine.component';
-import { MachineService } from '../service/machine/machine.service';
+import { MachineService } from '../../service/machine/machine.service';
 
 @NgModule({
   declarations: [MachineComponent],
