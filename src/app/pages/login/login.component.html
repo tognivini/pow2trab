@@ -1,0 +1,43 @@
+<div class="container">
+  <h3>Login</h3>
+  <br />
+  <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+    <div class="form-group">
+      <label for="email" class="form-label">E-mail</label>
+      <input
+        id="email"
+        class="form-control"
+        placeholder="nome@mail.com"
+        type="email"
+        ngModel
+        name="email"
+        #email="ngModel"
+      />
+    </div>
+    <div class="form-group">
+      <label for="studantCode" class="form-label">Matrícula</label>
+      <input
+        id="studantCode"
+        class="form-control"
+        placeholder="0000-0000"
+        type="number"
+        ngModel
+        name="studantCode"
+        #studantCode="ngModel"
+      />
+    </div>
+    <div class="form-group">
+      <label for="password" class="form-label">Senha</label>
+      <input
+        id="password"
+        class="form-control"
+        placeholder="preencha com a sua senha"
+        type="password"
+        ngModel
+        name="password"
+        #passwordCode="ngModel"
+      />
+    </div>
+    <button type="submit" class="btn btn-primary">login</button>
+  </form>
+</div>

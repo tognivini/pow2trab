@@ -11,9 +11,9 @@ import { ScheduleComponent } from './pages/schedule/schedule.component';
 import { UserComponent } from './pages/user/user.component';
 import { LaundryComponent } from './pages/laundry/laundry.component';
 import { MachineComponent } from './pages/machine/machine.component';
-
+import { LoginComponent } from './pages/login/login.component';
 import { routing } from './app.routing';
-
+import { FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,8 +24,9 @@ import { routing } from './app.routing';
     UserComponent,
     LaundryComponent,
     MachineComponent,
+    LoginComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, NgbModule, routing],
+  imports: [BrowserModule, AppRoutingModule, NgbModule, routing, FormsModule],
   providers: [],
   bootstrap: [AppComponent],
 })
