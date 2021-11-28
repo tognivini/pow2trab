@@ -1,5 +1,10 @@
 <div class="container">
-  <h3>Login</h3>
+  <div *ngIf="isRegisterPage">
+    <h3>Registre-se</h3>
+  </div>
+  <div *ngIf="!isRegisterPage">
+    <h3>Login</h3>
+  </div>
   <br />
   <form #f="ngForm" (ngSubmit)="onSubmit(f)">
     <div class="form-group">
@@ -20,7 +25,8 @@
         id="studantCode"
         class="form-control"
         placeholder="0000-0000"
-        type="number"
+        type="text"
+        maxlength="10"
         ngModel
         name="studantCode"
         #studantCode="ngModel"
@@ -33,11 +39,40 @@
         class="form-control"
         placeholder="preencha com a sua senha"
         type="password"
+        maxlength="8"
         ngModel
         name="password"
-        #passwordCode="ngModel"
+        #password="ngModel"
       />
     </div>
-    <button type="submit" class="btn btn-primary">login</button>
+
+    <div class="form-group" *ngIf="isRegisterPage">
+      <label for="password" class="form-label">Confirmar senha</label>
+      <input
+        id="rePassword"
+        class="form-control"
+        placeholder="confirme a sua senha"
+        type="password"
+        maxlength="8"
+        ngModel
+        name="rePassword"
+        #rePassword="ngModel"
+      />
+      <span class="errorField" *ngIf="errorRePassowrd">
+        {{ errorRePassowrd }}
+      </span>
+    </div>
+    <div class="btnContainer">
+      <span class="anchorClick" (click)="onFlipPage()">
+        {{
+          isRegisterPage
+            ? "Já possui uma conta?"
+            : "Ainda não possui uma conta?"
+        }}
+      </span>
+      <button type="submit" class="btn btn-primary">
+        {{ isRegisterPage ? "Registre-se" : "Login" }}
+      </button>
+    </div>
   </form>
 </div>
