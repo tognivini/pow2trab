@@ -19,14 +19,14 @@
         <!-- routerLink="/user" -->
       </li>
 
-      <li class="nav-item" *ngIf="isLoggedUser?.token">
+      <!-- <li class="nav-item" *ngIf="isLoggedUser?.token">
         <a class="nav-link" (click)="onRedirectNav('/laundry')">Laundry</a>
-      </li>
-      <li *ngIf="isLoggedUser?.token">
+      </li> -->
+      <!-- <li *ngIf="isLoggedUser?.token">
         <a class="nav-link" (click)="onRedirectNav('/machine')">Machine</a>
-      </li>
+      </li> -->
       <li *ngIf="isLoggedUser?.token">
-        <a class="nav-link" (click)="onRedirectNav('/schedule')">Schedule</a>
+        <a class="nav-link" (click)="onRedirectNav('/schedule')">Agenda</a>
       </li>
       <li *ngIf="!isLoggedUser?.token">
         <a class="nav-link" (click)="onRedirectNav('/login')">Login</a>
@@ -34,22 +34,6 @@
       <li *ngIf="isLoggedUser?.token">
         <a class="nav-link" (click)="onRedirectLogoff()">Sair</a>
       </li>
-      <!-- <li class="nav-item dropdown">
-        <a
-          class="nav-link dropdown-toggle"
-          href="#"
-          id="navbarDropdown"
-          role="button"
-          data-toggle="dropdown"
-          aria-haspopup="true"
-          aria-expanded="false"
-        >
-          Dropdown
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" routerLink="/cursos">Cursos</a>
-        </div>
-      </li> -->
     </ul>
   </div>
 </nav>

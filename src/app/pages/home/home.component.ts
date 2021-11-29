@@ -1,15 +1,47 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
+import { LocalStorageService } from '../../service/localStorage/localStorage.service';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
+  loggedUser: any = {};
 
-  constructor() { }
+  scheduleHistory: any = [
+    {
+      id: '003',
+      time: '11:00',
+      date: '10/12/2021',
+      status: 'Pendente',
+    },
+    {
+      id: '002',
+      time: '10:00',
+      date: '20/10/2021',
+      status: 'Finalizado',
+    },
+    {
+      id: '001',
+      time: '11:00',
+      date: '18/10/2021',
+      status: 'Finalizado',
+    },
+  ];
 
-  ngOnInit(): void {
+  onRedirectPage() {
+    return this.router.navigate(['/schedule']);
   }
 
+  constructor(
+    private localStorage: LocalStorageService,
+    private router: Router
+  ) {
+    this.loggedUser = this.localStorage.get('loggedUser');
+  }
+
+  ngOnInit(): void {}
 }

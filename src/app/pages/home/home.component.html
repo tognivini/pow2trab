@@ -1,1 +1,32 @@
-<h1>home works!</h1>
+<div class="container">
+  <div>
+    <h3>
+      Bem vindo <span> {{ loggedUser.name }}</span>
+    </h3>
+  </div>
+  <div class="btnContainer">
+    <button type="button" class="btn btn-primary" (click)="onRedirectPage()">
+      Fazer novo agendamento
+    </button>
+  </div>
+
+  <div>
+    <h4>Ultimos agendamentos</h4>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Data</th>
+          <th scope="col">Hora</th>
+          <th scope="col">Situação</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let history of scheduleHistory">
+          <th scope="row">{{ history.date }}</th>
+          <td>{{ history.time }}</td>
+          <td>{{ history.status }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
