@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LoginService } from '../../service/login/login.service';
 import { NgForm } from '@angular/forms';
 
 @Component({
@@ -8,8 +9,6 @@ import { NgForm } from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
   isRegisterPage: boolean;
-  stringg: string;
-
   errorRePassowrd: string;
 
   onFlipPage() {
@@ -17,31 +16,29 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(f: NgForm) {
+    const { email, studantCode, password, rePassword } = f.value;
     if (this.isRegisterPage) {
-      const { password, rePassword } = f.value;
-      if (password === rePassword) {
-        console.log('action register');
-        this.errorRePassowrd = '';
-      } else {
-        this.errorRePassowrd = 'senhas não coincidem';
-        // this.errorFields = {
-        //   ...this.errorFields,
-        //   rePassword: 'Senhas não coincidem',
-        // };
+      if (email && studantCode && password) {
+        if (password === rePassword) {
+          this.errorRePassowrd = '';
+          alert('action register');
+        } else {
+          this.errorRePassowrd = 'senhas não coincidem';
+        }
       }
     } else {
-      console.log('action login');
+      this.loginService.startLogin({
+        email,
+        studantCode,
+        password,
+      });
     }
-    console.log(f.value);
   }
 
-  constructor() {
+  constructor(private loginService: LoginService) {
     this.isRegisterPage = false;
-    this.stringg = 'alo';
     this.errorRePassowrd = '';
-    // this.errorFields = {
-    //   rePassword: false,
-    // };
+    // this.cursos = this.cursosService.getCursos();
   }
 
   ngOnInit(): void {}
