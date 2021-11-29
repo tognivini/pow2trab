@@ -1,1 +1,43 @@
-<p>schedule works!</p>
+<div class="container">
+  <div>
+    <h3>Agenda</h3>
+  </div>
+  <br />
+  <form>
+    <!-- #f="ngForm" (ngSubmit)="onSubmit(f)" -->
+    <div class="form-group">
+      <label for="date" class="form-label">Selecione o dia</label>
+      <input id="date" class="form-control" type="date" name="date" required />
+      <!-- #date="ngModel" -->
+    </div>
+
+    <div class="mb-3">
+      <label for="time" class="form-label">Selecione o horário</label>
+      <div class="hourContainer">
+        <select id="hour" class="form-control selectHour">
+          <option *ngFor="let hour of avaliableHours">
+            {{ hour?.value }}
+          </option>
+        </select>
+        <select id="interval" class="form-control selectHour">
+          <option *ngFor="let interval of avaliableInterval">
+            {{ interval?.value }}
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="date" class="form-label">Selecione a máquina</label>
+      <select id="machine" class="form-control">
+        <option *ngFor="let machine of avaliableWashMachine">
+          {{ machine?.name }}
+        </option>
+      </select>
+    </div>
+
+    <div class="btnContainer">
+      <button type="submit" class="btn btn-primary">Agendar</button>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,25 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  height: 100vh;
+}
+.btnContainer {
+  display: flex;
+  flex-direction: row-reverse;
+}
+.btn {
+  width: 20%;
+}
+.hourContainer {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+.selectHour {
+  width: 10%;
+}
+.errorField {
+  color: red;
+}
