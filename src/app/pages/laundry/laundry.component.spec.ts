@@ -8,8 +8,9 @@ describe('LaundryComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [LaundryComponent],
-    }).compileComponents();
+      declarations: [ LaundryComponent ]
+    })
+    .compileComponents();
   });
 
   beforeEach(() => {

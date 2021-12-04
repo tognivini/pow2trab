@@ -7,19 +7,15 @@
 }
 .btnContainer {
   display: flex;
-  flex-direction: row-reverse;
-}
-.btn {
-  width: 20%;
-}
-.hourContainer {
-  display: flex;
-  align-items: center;
   flex-direction: row;
-}
-.selectHour {
-  width: 10%;
+  justify-content: space-between;
 }
 .errorField {
   color: red;
+}
+
+.anchorClick {
+  color: blue;
+  text-decoration: underline;
+  cursor: pointer;
 }
