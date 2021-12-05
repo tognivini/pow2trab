@@ -5,12 +5,28 @@
     </h3>
   </div>
   <div class="btnContainer">
-    <button type="button" class="btn btn-primary" (click)="onRedirectPage()">
+    <button
+      type="button"
+      class="btn btn-secondary"
+      (click)="onRedirectPage()"
+      [disabled]="hadNotUserCompletedRegister"
+    >
       Fazer novo agendamento
     </button>
   </div>
 
-  <div>
+  <div class="btnContainer">
+    <button
+      type="button"
+      class="btn btn-danger"
+      (click)="onRedirectUserPage()"
+      *ngIf="hadNotUserCompletedRegister"
+    >
+      Completar cadastro
+    </button>
+  </div>
+
+  <div *ngIf="!hadNotUserCompletedRegister">
     <h4>Ultimos agendamentos</h4>
     <table class="table">
       <thead>

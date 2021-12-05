@@ -9,6 +9,8 @@ import { LocalStorageService } from '../../service/localStorage/localStorage.ser
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
+  hadNotUserCompletedRegister: boolean;
+
   loggedUser: any = {};
 
   scheduleHistory: any = [
@@ -32,14 +34,25 @@ export class HomeComponent implements OnInit {
     },
   ];
 
+  onGetLoggedUser() {
+    if (!this.loggedUser?.laundry?.id) {
+      this.hadNotUserCompletedRegister = false;
+    }
+  }
+
   onRedirectPage() {
     return this.router.navigate(['/schedule']);
+  }
+
+  onRedirectUserPage() {
+    return this.router.navigate(['/user']);
   }
 
   constructor(
     private localStorage: LocalStorageService,
     private router: Router
   ) {
+    this.hadNotUserCompletedRegister = true;
     this.loggedUser = this.localStorage.get('loggedUser');
   }
 
