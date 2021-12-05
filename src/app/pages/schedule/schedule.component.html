@@ -20,71 +20,71 @@
       />
     </div>
     <div class="form-group">
-      <!-- <label for="hourSchedule" class="form-label">Selecione a hora</label> -->
-      <label for="state" class="form-label">Selecione a hora</label>
-      <!-- <input
-        id="hourSchedule"
-        class="form-control"
-        placeholder="--:--"
-        type="text"
-        ngModel
-        name="hourSchedule"
-        #hourSchedule="ngModel"
-        required
-      /> -->
-      <!-- <select #hourSchedule="ngModel" ngModel> -->
+      <label for="hour" class="form-label">Selecione a hora</label>
+      <div class="container-select">
+        <select
+          class="form-control"
+          id="hour"
+          name="hour"
+          ngModel
+          #hour="ngModel"
+          placeholder="--"
+        >
+          <option *ngFor="let hour of avaliableHours" [value]="hour.value">
+            {{ hour.value }}
+          </option>
+        </select>
+        <select
+          class="form-control"
+          id="interval"
+          name="interval"
+          ngModel
+          #interval="ngModel"
+          placeholder="--"
+        >
+          <option
+            *ngFor="let interval of avaliableInterval"
+            [value]="interval.value"
+          >
+            {{ interval.value }}
+          </option>
+        </select>
+      </div>
+    </div>
+    <button class="btn btn-secondary" (click)="onSelectPeriod(f)">
+      Checar maquinas
+    </button>
+
+    <div class="form-group">
+      <label for="machine" class="form-label"
+        >Selecione a máquina disponível</label
+      >
       <select
         class="form-control"
-        id="state"
-        name="state"
+        id="machine"
+        name="machine"
         ngModel
-        #state="ngModel"
+        #machine="ngModel"
+        placeholder="--"
+        [disabled]="!isWashMachineAvaliable"
       >
-        <option *ngFor="let state of states" [value]="state.abbrev">
-          {{ state.abbrev }}
+        <option
+          *ngFor="let machine of avaliableWashMachine"
+          [value]="machine.value"
+        >
+          {{ machine.value }}
         </option>
       </select>
     </div>
-    <div class="form-group">
-      <label for="password" class="form-label">Senha</label>
-      <input
-        id="password"
-        class="form-control"
-        placeholder="preencha com a sua senha"
-        type="password"
-        maxlength="8"
-        ngModel
-        name="password"
-        #password="ngModel"
-        required
-      />
-    </div>
 
-    <!-- <div class="form-group" *ngIf="isRegisterPage">
-        <label for="password" class="form-label">Confirmar senha</label>
-        <input
-          id="rePassword"
-          class="form-control"
-          placeholder="confirme a sua senha"
-          type="password"
-          maxlength="8"
-          ngModel
-          name="rePassword"
-          #rePassword="ngModel"
-        />
-        <span class="errorField" *ngIf="errorRePassowrd">
-          {{ errorRePassowrd }}
-        </span>
-      </div> -->
     <div class="btnContainer">
-      <!-- <span class="anchorClick" (click)="onFlipPage()">
-          {{
-            isRegisterPage
-              ? "Já possui uma conta?"
-              : "Ainda não possui uma conta?"
-          }}
-        </span> -->
-      <button type="submit" class="btn btn-primary">Agendar</button>
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="!isWashMachineAvaliable"
+      >
+        Agendar
+      </button>
     </div>
   </form>
 </div>

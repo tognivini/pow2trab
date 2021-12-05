@@ -17,6 +17,8 @@ import { HomeComponent } from './pages/home/home.component';
 import { ScheduleComponent } from './pages/schedule/schedule.component';
 import { LaundryComponent } from './pages/laundry/laundry.component';
 import { UserComponent } from './pages/user/user.component';
+import * as moment from 'moment';
+
 @NgModule({
   declarations: [
     AppComponent,

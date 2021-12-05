@@ -7,8 +7,8 @@
 }
 .btnContainer {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  flex-direction: row-reverse;
+  /* justify-content: space-between; */
 }
 .errorField {
   color: red;
@@ -18,4 +18,18 @@
   color: blue;
   text-decoration: underline;
   cursor: pointer;
+}
+.container-select {
+  display: flex;
+  flex-direction: row;
+}
+select {
+  width: 15%;
+  /* @media (min-width: 701px) {
+    width: 15%;
+  } */
+
+  /* @media (max-width: 600px) {
+    width: 50%;
+  } */
 }

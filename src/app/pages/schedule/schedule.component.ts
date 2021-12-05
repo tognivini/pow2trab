@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { LoginService } from '../../service/login/login.service';
+import { ScheduleService } from '../../service/schedule/schedule.service';
+import { LaundryService } from '../../service/laundry/laundry.service';
 import { NgForm, FormControl, FormGroup } from '@angular/forms';
 
 @Component({
@@ -8,13 +9,7 @@ import { NgForm, FormControl, FormGroup } from '@angular/forms';
   styleUrls: ['./schedule.component.css'],
 })
 export class ScheduleComponent implements OnInit {
-  states = [
-    { name: 'Arizona', abbrev: 'AZ' },
-    { name: 'California', abbrev: 'CA' },
-    { name: 'Colorado', abbrev: 'CO' },
-    { name: 'New York', abbrev: 'NY' },
-    { name: 'Pennsylvania', abbrev: 'PA' },
-  ];
+  isWashMachineAvaliable: boolean;
 
   avaliableWashMachine: any = [];
 
@@ -31,33 +26,32 @@ export class ScheduleComponent implements OnInit {
     },
   ];
 
-  onSubmit(f: NgForm) {
-    const { dateSchedule, hourSchedule, state } = f.value;
-    // if (this.isRegisterPage) {
-    //   if (email && studantCode && password) {
-    //     if (password === rePassword) {
-    //       this.errorRePassowrd = '';
-    //       alert('action register');
-    //     } else {
-    //       this.errorRePassowrd = 'senhas não coincidem';
-    //     }
-    //   }
-    // } else {
-    //   this.loginService.startLogin({
-    //     email,
-    //     studantCode,
-    //     password,
-    //   });
-    // }
-    console.log(dateSchedule, hourSchedule, 'a', state);
+  onSelectPeriod(f: NgForm) {
+    const { dateSchedule, hour, interval } = f.value;
+    const payload = {
+      dateSchedule,
+      hour,
+      interval,
+    };
+    this.avaliableWashMachine =
+      this.laundryService.getAvaliableMachinesByPeriod(payload);
+    this.isWashMachineAvaliable =
+      this.avaliableWashMachine.length > 0 ? true : false;
   }
-  // form = new FormGroup({
-  //   state: new FormControl(this.states[3]),
-  // });
 
-  constructor(private loginService: LoginService) {
-    // this.avaliableWashMachine = this.scheduleService.getAvaliableWashMachine();
-    // this.avaliableHours = this.scheduleService.getAvaliableHours();
+  onSubmit(f: NgForm) {
+    const { dateSchedule, hour, interval, machine } = f.value;
+    if (dateSchedule && hour && interval && machine) {
+      console.log(dateSchedule, hour, ':', interval, machine);
+    }
+  }
+
+  constructor(
+    private scheduleService: ScheduleService,
+    private laundryService: LaundryService
+  ) {
+    this.isWashMachineAvaliable = false;
+    this.avaliableHours = this.scheduleService.getAvaliableHours();
   }
 
   ngOnInit(): void {}
