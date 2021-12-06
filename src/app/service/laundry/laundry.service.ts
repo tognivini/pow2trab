@@ -25,5 +25,26 @@ export class LaundryService {
       return [];
     }
   }
+
+  getAllWashLaundrys() {
+    return [
+      {
+        id: '001',
+        name: 'Lavanderia edifício 01',
+      },
+      {
+        id: '002',
+        name: 'Lavanderia edifício 02',
+      },
+      {
+        id: '003',
+        name: 'Lavanderia edifício 03',
+      },
+      {
+        id: '004',
+        name: 'Lavanderia edifício 04',
+      },
+    ];
+  }
   constructor() {}
 }

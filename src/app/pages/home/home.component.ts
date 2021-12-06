@@ -34,12 +34,6 @@ export class HomeComponent implements OnInit {
     },
   ];
 
-  onGetLoggedUser() {
-    if (!this.loggedUser?.laundry?.id) {
-      this.hadNotUserCompletedRegister = false;
-    }
-  }
-
   onRedirectPage() {
     return this.router.navigate(['/schedule']);
   }
@@ -48,12 +42,19 @@ export class HomeComponent implements OnInit {
     return this.router.navigate(['/user']);
   }
 
+  onGetLoggedUser() {
+    if (this.loggedUser?.laundry) {
+      this.hadNotUserCompletedRegister = false;
+    }
+  }
+
   constructor(
     private localStorage: LocalStorageService,
     private router: Router
   ) {
     this.hadNotUserCompletedRegister = true;
     this.loggedUser = this.localStorage.get('loggedUser');
+    this.onGetLoggedUser();
   }
 
   ngOnInit(): void {}

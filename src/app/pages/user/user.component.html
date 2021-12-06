@@ -1,1 +1,43 @@
-<p>user works!</p>
+<div class="container">
+  <div>
+    <h3>Completar cadastro</h3>
+  </div>
+  <br />
+  <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+    <div class="form-group">
+      <label for="email" class="form-label">E-mail</label>
+      <input
+        id="email"
+        class="form-control"
+        placeholder="nome@mail.com"
+        type="email"
+        ngModel
+        name="email"
+        #email="ngModel"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <label for="laundry" class="form-label"
+        >Selecione a lavanderia mais próxima da sua preferência</label
+      >
+      <div class="container-select">
+        <select
+          class="form-control"
+          id="laundry"
+          name="laundry"
+          ngModel
+          #laundry="ngModel"
+        >
+          <option *ngFor="let laundry of allLaundrys" [value]="laundry.id">
+            {{ laundry.name }}
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <div class="btnContainer">
+      <button type="submit" class="btn btn-primary">Salvar</button>
+    </div>
+  </form>
+</div>

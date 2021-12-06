@@ -2,6 +2,17 @@
   <div>
     <h3>Agendamento</h3>
   </div>
+
+  <div class="btnContainer">
+    <button
+      type="button"
+      class="btn btn-danger"
+      (click)="onRedirectUserPage()"
+      *ngIf="hadNotUserCompletedRegister"
+    >
+      Completar cadastro
+    </button>
+  </div>
   <br />
   <form #f="ngForm" (ngSubmit)="onSubmit(f)">
     <div class="form-group">
@@ -17,6 +28,7 @@
         name="dateSchedule"
         #dateSchedule="ngModel"
         required
+        [disabled]="hadNotUserCompletedRegister"
       />
     </div>
     <div class="form-group">
@@ -29,8 +41,13 @@
           ngModel
           #hour="ngModel"
           placeholder="--"
+          [disabled]="hadNotUserCompletedRegister"
         >
-          <option *ngFor="let hour of avaliableHours" [value]="hour.value">
+          <option
+            *ngFor="let hour of avaliableHours"
+            [value]="hour.value"
+            [disabled]="hadNotUserCompletedRegister"
+          >
             {{ hour.value }}
           </option>
         </select>
@@ -41,6 +58,7 @@
           ngModel
           #interval="ngModel"
           placeholder="--"
+          [disabled]="hadNotUserCompletedRegister"
         >
           <option
             *ngFor="let interval of avaliableInterval"
@@ -51,7 +69,11 @@
         </select>
       </div>
     </div>
-    <button class="btn btn-secondary" (click)="onSelectPeriod(f)">
+    <button
+      class="btn btn-secondary"
+      (click)="onSelectPeriod(f)"
+      [disabled]="hadNotUserCompletedRegister"
+    >
       Checar maquinas
     </button>
 

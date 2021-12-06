@@ -11,6 +11,7 @@ export class LoginService {
     console.log(payload);
     const user = {
       name: 'robson',
+      email: 'robson@gmail.com',
       studantCode: '0000000000',
       token: 'abskjf30lp',
     };

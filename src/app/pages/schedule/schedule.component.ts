@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ScheduleService } from '../../service/schedule/schedule.service';
 import { LaundryService } from '../../service/laundry/laundry.service';
+import { LocalStorageService } from '../../service/localStorage/localStorage.service';
 import { NgForm, FormControl, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-schedule',
@@ -9,11 +11,15 @@ import { NgForm, FormControl, FormGroup } from '@angular/forms';
   styleUrls: ['./schedule.component.css'],
 })
 export class ScheduleComponent implements OnInit {
+  hadNotUserCompletedRegister: boolean;
+
   isWashMachineAvaliable: boolean;
 
   avaliableWashMachine: any = [];
 
   avaliableHours: any = [];
+
+  loggedUser: any = {};
 
   avaliableInterval: any = [
     {
@@ -25,6 +31,16 @@ export class ScheduleComponent implements OnInit {
       value: '30',
     },
   ];
+
+  onRedirectUserPage() {
+    return this.router.navigate(['/user']);
+  }
+
+  onGetLoggedUser() {
+    if (this.loggedUser?.laundry) {
+      this.hadNotUserCompletedRegister = false;
+    }
+  }
 
   onSelectPeriod(f: NgForm) {
     const { dateSchedule, hour, interval } = f.value;
@@ -47,11 +63,16 @@ export class ScheduleComponent implements OnInit {
   }
 
   constructor(
+    private localStorage: LocalStorageService,
     private scheduleService: ScheduleService,
-    private laundryService: LaundryService
+    private laundryService: LaundryService,
+    private router: Router
   ) {
     this.isWashMachineAvaliable = false;
     this.avaliableHours = this.scheduleService.getAvaliableHours();
+    this.hadNotUserCompletedRegister = true;
+    this.loggedUser = this.localStorage.get('loggedUser');
+    this.onGetLoggedUser();
   }
 
   ngOnInit(): void {}
