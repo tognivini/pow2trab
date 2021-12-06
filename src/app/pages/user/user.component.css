@@ -1,0 +1,27 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 80%;
+  height: 100vh;
+}
+.btnContainer {
+  display: flex;
+  flex-direction: row-reverse;
+}
+.errorField {
+  color: red;
+}
+
+.anchorClick {
+  color: blue;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.container-select {
+  display: flex;
+  flex-direction: row;
+}
+select {
+  /* width: 50%; */
+}

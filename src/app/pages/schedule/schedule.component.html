@@ -1,0 +1,112 @@
+<div class="container">
+  <div>
+    <h3>Agendamento</h3>
+  </div>
+
+  <div class="btnContainer">
+    <button
+      type="button"
+      class="btn btn-danger"
+      (click)="onRedirectUserPage()"
+      *ngIf="hadNotUserCompletedRegister"
+    >
+      Completar cadastro
+    </button>
+  </div>
+  <br />
+  <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+    <div class="form-group">
+      <label for="dateSchedule" class="form-label"
+        >Selecione a data para o agendamento</label
+      >
+      <input
+        id="dateSchedule"
+        class="form-control"
+        placeholder="--/--/--"
+        type="date"
+        ngModel
+        name="dateSchedule"
+        #dateSchedule="ngModel"
+        required
+        [disabled]="hadNotUserCompletedRegister"
+      />
+    </div>
+    <div class="form-group">
+      <label for="hour" class="form-label">Selecione a hora</label>
+      <div class="container-select">
+        <select
+          class="form-control"
+          id="hour"
+          name="hour"
+          ngModel
+          #hour="ngModel"
+          placeholder="--"
+          [disabled]="hadNotUserCompletedRegister"
+        >
+          <option
+            *ngFor="let hour of avaliableHours"
+            [value]="hour.value"
+            [disabled]="hadNotUserCompletedRegister"
+          >
+            {{ hour.value }}
+          </option>
+        </select>
+        <select
+          class="form-control"
+          id="interval"
+          name="interval"
+          ngModel
+          #interval="ngModel"
+          placeholder="--"
+          [disabled]="hadNotUserCompletedRegister"
+        >
+          <option
+            *ngFor="let interval of avaliableInterval"
+            [value]="interval.value"
+          >
+            {{ interval.value }}
+          </option>
+        </select>
+      </div>
+    </div>
+    <button
+      class="btn btn-secondary"
+      (click)="onSelectPeriod(f)"
+      [disabled]="hadNotUserCompletedRegister"
+    >
+      Checar maquinas
+    </button>
+
+    <div class="form-group">
+      <label for="machine" class="form-label"
+        >Selecione a máquina disponível</label
+      >
+      <select
+        class="form-control"
+        id="machine"
+        name="machine"
+        ngModel
+        #machine="ngModel"
+        placeholder="--"
+        [disabled]="!isWashMachineAvaliable"
+      >
+        <option
+          *ngFor="let machine of avaliableWashMachine"
+          [value]="machine.value"
+        >
+          {{ machine.value }}
+        </option>
+      </select>
+    </div>
+
+    <div class="btnContainer">
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="!isWashMachineAvaliable"
+      >
+        Agendar
+      </button>
+    </div>
+  </form>
+</div>
